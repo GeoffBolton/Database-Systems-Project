@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema project_company
+-- Schema simple_company
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema project_company
+-- Schema simple_company
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `project_company` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `project_company` ;
+CREATE SCHEMA IF NOT EXISTS `simple_company` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `simple_company` ;
 
 -- -----------------------------------------------------
--- Table `project_company`.`Customer`
+-- Table `simple_company`.`Customer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `project_company`.`Customer` (
+CREATE TABLE IF NOT EXISTS `simple_company`.`Customer` (
   `id` BIGINT(8) NOT NULL AUTO_INCREMENT COMMENT '',
   `firstName` VARCHAR(45) NOT NULL COMMENT '',
   `lastName` VARCHAR(45) NOT NULL COMMENT '',
@@ -30,9 +30,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `project_company`.`CreditCard`
+-- Table `simple_company`.`CreditCard`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `project_company`.`CreditCard` (
+CREATE TABLE IF NOT EXISTS `simple_company`.`CreditCard` (
   `name` VARCHAR(45) NOT NULL COMMENT '',
   `ccNumber` VARCHAR(45) NOT NULL COMMENT '',
   `expDate` VARCHAR(45) NOT NULL COMMENT '',
@@ -42,16 +42,16 @@ CREATE TABLE IF NOT EXISTS `project_company`.`CreditCard` (
   PRIMARY KEY (`customerID`)  COMMENT '',
   CONSTRAINT `fk_CreditCard_Customer`
     FOREIGN KEY (`customerID`)
-    REFERENCES `project_company`.`Customer` (`id`)
+    REFERENCES `simple_company`.`Customer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `project_company`.`Address`
+-- Table `simple_company`.`Address`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `project_company`.`Address` (
+CREATE TABLE IF NOT EXISTS `simple_company`.`Address` (
   `address1` VARCHAR(100) NOT NULL COMMENT '',
   `address2` VARCHAR(100) NULL DEFAULT NULL COMMENT '',
   `city` VARCHAR(45) NOT NULL COMMENT '',
@@ -61,16 +61,16 @@ CREATE TABLE IF NOT EXISTS `project_company`.`Address` (
   PRIMARY KEY (`customerID`)  COMMENT '',
   CONSTRAINT `fk_Address_Customer1`
     FOREIGN KEY (`customerID`)
-    REFERENCES `project_company`.`Customer` (`id`)
+    REFERENCES `simple_company`.`Customer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `project_company`.`Product`
+-- Table `simple_company`.`Product`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `project_company`.`Product` (
+CREATE TABLE IF NOT EXISTS `simple_company`.`Product` (
   `id` BIGINT(8) NOT NULL COMMENT '',
   `prodName` VARCHAR(45) NOT NULL COMMENT '',
   `prodDescription` VARCHAR(100) NOT NULL COMMENT '',
@@ -81,9 +81,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `project_company`.`Purchase`
+-- Table `simple_company`.`Purchase`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `project_company`.`Purchase` (
+CREATE TABLE IF NOT EXISTS `simple_company`.`Purchase` (
   `id` BIGINT(8) NOT NULL COMMENT '',
   `productID` BIGINT(8) NOT NULL COMMENT '',
   `customerID` BIGINT(8) NOT NULL COMMENT '',
@@ -94,12 +94,12 @@ CREATE TABLE IF NOT EXISTS `project_company`.`Purchase` (
   INDEX `fk_Purchase_Product1_idx` (`productID` ASC)  COMMENT '',
   CONSTRAINT `fk_Purchase_Customer1`
     FOREIGN KEY (`customerID`)
-    REFERENCES `project_company`.`Customer` (`id`)
+    REFERENCES `simple_company`.`Customer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Purchase_Product1`
     FOREIGN KEY (`productID`)
-    REFERENCES `project_company`.`Product` (`id`)
+    REFERENCES `simple_company`.`Product` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -108,3 +108,4 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
