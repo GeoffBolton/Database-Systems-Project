@@ -66,7 +66,7 @@ public class ProductDaoImpl implements ProductDAO
 	public Product retrieve(Connection conn, Long productID) throws SQLException, DAOException
 	{
 		if(productID == null) {
-			throw new DAOException("Trying to retrieve Customer with NULL ID");
+			throw new DAOException("Trying to retrieve Product with NULL ID");
 		}
 		
 		PreparedStatement ps = null;
